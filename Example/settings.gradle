@@ -1,0 +1,2 @@
+include ':eventflit-websocket-android'
+project(':eventflit-websocket-android').projectDir = new File('../library')

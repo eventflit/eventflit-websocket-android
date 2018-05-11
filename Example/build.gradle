@@ -1,0 +1,56 @@
+apply plugin: 'com.android.application'
+
+buildscript {
+    repositories {
+        jcenter() // or mavenCentral()
+        google()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.0'
+        classpath 'com.google.gms:google-services:3.1.0'
+    }
+}
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion '26.0.2'
+
+    defaultConfig {
+        applicationId "eventflit.example"
+        minSdkVersion 14
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dexOptions {
+        preDexLibraries = false
+    }
+}
+
+repositories {
+    mavenCentral()
+    google()
+}
+
+ext.play_services_version = '11.6.0'
+ext.support_lib_version = '25.4.0'
+
+dependencies {
+    compile project(':eventflit-websocket-android')
+    compile "com.google.firebase:firebase-messaging:$play_services_version"
+    compile "com.google.firebase:firebase-core:$play_services_version"
+    compile "com.google.android.gms:play-services-gcm:$play_services_version"
+    compile "com.android.support:appcompat-v7:$support_lib_version"
+    compile "com.google.firebase:firebase-config:$play_services_version"
+}
+
+apply plugin: 'com.google.gms.google-services'
